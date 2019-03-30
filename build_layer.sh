@@ -50,15 +50,15 @@ PARENT_DIR=${CURRENT_DIR%"${BASE_DIR}"}
 # find location of requirements.txt
 if [[ -f "${CURRENT_DIR}/requirements.txt" ]]; then
   REQ_PATH="${CURRENT_DIR}/requirements.txt"
-  echo "reqs in base dir"
+  echo "Using requirements.txt from script dir"
 elif [[ -f "${PARENT_DIR}/requirements.txt" ]]; then
   REQ_PATH="${PARENT_DIR}/requirements.txt"
   SUBDIR_MODE="True"
-  echo "reqs in parent"
+  echo "Using requirements.txt from ../"
 elif [[ -f "${PARENT_DIR}/function/requirements.txt" ]]; then
   REQ_PATH="${PARENT_DIR}/function/requirements.txt"
   SUBDIR_MODE="True"
-  echo "reqs in parent/function"
+  echo "Using requirements.txt from ../function"
 else
   echo "Unable to find requirements.txt"
   exit 1

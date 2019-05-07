@@ -1,12 +1,13 @@
 # Build AWS Lambda Layer zip file for Python Dependancies
 
-Creates an AWS Lambda Layers **optimized** zip file using the [Lambda Layer directory structure](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path), ensures compiled libraries are compatible with Lambda environment, and optimized to reduce file size.
+Creates an AWS Lambda Layers zip file that is **optimized** for: [Lambda Layer directory structure](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path), compiled library compatibility, and minimal file size.
 
 This function was created to address these issues:
 
-- Many methods of creating Lambda zip files for Python functions don't work for Lambda Layers because Lambda Layers require specific library paths within the zip
-- Some dependancies required compiled components, which requires that the zip is created in an environment that matches the Lambda runtime environment
-- Minimize the zip size by removing unnecessary items
+- Many methods of creating Lambda zip files for Python functions don't work for Lambda Layers
+  - This is due to the fact Lambda Layers require specific library paths within the zip, where regular Lambda zips dont
+- Compiled dependancies must be created in an environment that matches the Lambda runtime
+- Reduce size of zip file by removing unnecessary libraries and files
 
 **Note: This script requires Docker and uses a container to mimic the Lambda environment.**
 
@@ -35,9 +36,7 @@ git clone --depth 1 https://github.com/robertpeteuil/build-lambda-layer-python _
 Alternatively, add as a submodule:
 
 ``` bash
-# PUBLIC USE HTTPS
 cd {repo root}
-# eventual public repo will use http
 git submodule add https://github.com/robertpeteuil/build-lambda-layer-python _build_layer
 # Update submodule
 git submodule update --init --recursive --remote
@@ -46,16 +45,17 @@ git submodule update --init --recursive --remote
 ## Use
 
 - Run the builder with the command `./build_layer.sh`
-- Optionally specify Python Version
-  - `-p PYTHON_VER` - specifies the Python version: 2.7, 3.6, 3.7 (default 3.6)
+  - or `_build_layer/build_layer.sh` if installed in sub-dir
 - It uses the first requirements.txt file found in these locations (in order):
   - same directory as script
   - parent directory of script (useful when used as submodule)
   - function sub-directory of the parent directory (useful when used as submodule)
+- Optionally specify Python Version
+  - `-p PYTHON_VER` - specifies the Python version: 2.7, 3.6, 3.7 (default 3.6)
 
 ## Reference - remove submodule
 
-If installed as submodule and want to remove
+If installed as submodule and need to remove
 
 ``` bash
 # Remove the submodule entry from .git/config

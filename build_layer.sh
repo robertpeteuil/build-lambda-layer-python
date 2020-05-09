@@ -11,8 +11,8 @@ set -e
 #     Zip filename includes python version used in its creation
 
 scriptname=$(basename "$0")
-scriptbuildnum="1.0.0"
-scriptbuilddate="2019-03-30"
+scriptbuildnum="1.0.1"
+scriptbuilddate="2020-05-08"
 
 # used to set destination of zip
 SUBDIR_MODE=""
@@ -24,7 +24,7 @@ displayVer() {
 usage() {
   [[ "$1" ]] && echo -e "AWS Lambda Layer Zip Builder for Python Libraries\n"
   echo -e "usage: ${scriptname} [-p PYTHON_VER] [-s] [-r REQUIREMENTS-DIR] [-h] [-v]"
-  echo -e "     -p PYTHON_VER\t: Python version to use: 2.7, 3.6, 3.7 (default 3.6)"
+  echo -e "     -p PYTHON_VER\t: Python version to use: 2.7, 3.6, 3.7, 3.8 (default 3.7)"
   echo -e "     -h\t\t\t: help"
   echo -e "     -v\t\t\t: display ${scriptname} version"
 }
@@ -40,8 +40,8 @@ while getopts ":p:hv" arg; do
 done
 shift $((OPTIND-1))
 
-# default Python to 3.6 if not set by CLI params
-PYTHON_VER="${PYTHON_VER:-3.6}"
+# default Python to 3.7 if not set by CLI params
+PYTHON_VER="${PYTHON_VER:-3.7}"
 
 CURRENT_DIR=$(reldir=$(dirname -- "$0"; echo x); reldir=${reldir%?x}; cd -- "$reldir" && pwd && echo x); CURRENT_DIR=${CURRENT_DIR%?x}
 BASE_DIR=$(basename $CURRENT_DIR)

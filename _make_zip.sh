@@ -8,8 +8,8 @@ set -e
 #     /python/lib/pythonX.X/site-packages
 
 scriptname=$(basename "$0")
-scriptbuildnum="1.0.0"
-scriptbuilddate="2019-03-30"
+scriptbuildnum="1.0.1"
+scriptbuilddate="2020-05-08"
 
 ### VARS
 CURRENT_DIR=$(reldir=$(dirname -- "$0"; echo x); reldir=${reldir%?x}; cd -- "$reldir" && pwd && echo x); CURRENT_DIR=${CURRENT_DIR%?x}

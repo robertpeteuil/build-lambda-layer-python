@@ -5,7 +5,7 @@ Creates an AWS Lambda Layers zip file that is **optimized** for: [Lambda Layer d
 This function was created to address these issues:
 
 - Many methods of creating Lambda zip files for Python functions don't work for Lambda Layers
-  - This is due to the fact Lambda Layers require specific library paths within the zip, where regular Lambda zips dont
+  - This is due to the fact Lambda Layers require specific library paths within the zip, unlike regular Lambda zip files
 - Compiled dependancies must be created in an environment that matches the Lambda runtime
 - Reduce size of zip file by removing unnecessary libraries and files
 
@@ -16,7 +16,7 @@ This function was created to address these issues:
 - Builds zip file containing Python dependancies and places the libraries into the proper directory structure for lambda layers
 - Ensures compiled libraries are compatible with Lambda environment by using [docker container](https://hub.docker.com/r/lambci/lambda) that mimics the lambda runtime environment
 - Optimized the zip size by removing `.pyc` files and unnecessary libraries
-- allows specifying lambda supported python versions: 2.7, 3.6 and 3.7
+- allows specifying lambda supported python versions: 2.7, 3.6, 3.7 and 3.8
 - Automatically searches for requirements.txt file in several locations:
   - same directory as script
   - parent directory or script (useful when used as submodule)
@@ -51,7 +51,7 @@ git submodule update --init --recursive --remote
   - parent directory of script (useful when used as submodule)
   - function sub-directory of the parent directory (useful when used as submodule)
 - Optionally specify Python Version
-  - `-p PYTHON_VER` - specifies the Python version: 2.7, 3.6, 3.7 (default 3.6)
+  - `-p PYTHON_VER` - specifies the Python version: 2.7, 3.6, 3.7, 3.8 (default 3.7)
 
 ## Reference - remove submodule
 
